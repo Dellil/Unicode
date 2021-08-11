@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Main from './Main';
+import Main from 'pages/Main';
 
 function App() {
 	return (
