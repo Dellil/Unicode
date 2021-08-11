@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './style.css';
 import StoreContext, { stores } from './stores';
 import App from './App';
 
