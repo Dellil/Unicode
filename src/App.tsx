@@ -1,17 +1,13 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Router from '@/Router';
 
-import Main from '@/pages/Main';
+interface Props {}
 
-function App() {
+const App: React.FC<Props> = () => {
 	return (
-		<BrowserRouter>
-			<Switch>
-				<Route exact path="/">
-					<Main />
-				</Route>
-			</Switch>
-		</BrowserRouter>
+		<>
+			<Router />
+		</>
 	);
-}
+};
 
 export default App;
