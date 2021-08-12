@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Icon from '@/lib/icon';
@@ -13,10 +13,6 @@ const Header: React.FC<Props> = () => {
 		setClicked(prev => !prev);
 	};
 
-	useEffect(() => {
-		console.log(isProfileClicked);
-	}, [isProfileClicked]);
-
 	return (
 		<>
 			<header className="h-12 border-gray-200 border-b-2 flex flex-row select-none">
@@ -25,7 +21,7 @@ const Header: React.FC<Props> = () => {
 						<Link to="/">Unicode</Link>
 					</div>
 					<div
-						className="flex flex-row items-center py-1"
+						className="flex flex-row items-center py-1 cursor-pointer"
 						onClick={onProfileClick}
 					>
 						<div className="rounded-full bg-indigo-400 text-white h-8 w-8 flex flex-row items-center justify-center mr-2.5">
@@ -33,7 +29,7 @@ const Header: React.FC<Props> = () => {
 						</div>
 						<div className="font-light text-sm">Chanhee Jang</div>
 						<div>
-							<Icon name="expandMore" className="text-gray-400 fill-current" />
+							<Icon name="expandMore" className="text-gray-400" />
 						</div>
 					</div>
 				</div>

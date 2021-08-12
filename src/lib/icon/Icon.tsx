@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import * as svg from './svg';
 
@@ -11,8 +12,9 @@ type IconProps = {
 };
 
 const Icon = ({ name, className, style }: IconProps) => {
+	const combinedClasses = clsx(className, 'fill-current');
 	return React.createElement(svg[name], {
-		className,
+		className: combinedClasses,
 		style,
 	});
 };

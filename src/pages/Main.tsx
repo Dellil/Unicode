@@ -1,7 +1,15 @@
+import Workspaces from '@/components/Workspaces';
+import Exams from '@/components/Exams';
+
 interface Props {}
 
 const Main: React.FC<Props> = () => {
-	return <div>Main Page</div>;
+	return (
+		<div className="flex flex-row h-body-without-header">
+			<Workspaces />
+			<Exams />
+		</div>
+	);
 };
 
 export default Main;
