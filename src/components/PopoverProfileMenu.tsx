@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 interface Props {}
 
-const PopoverMenu: React.FC<Props> = () => {
+const PopoverProfileMenu: React.FC<Props> = () => {
 	return (
 		<div className=" absolute right-0 w-64 mr-6 flex flex-col justify-between shadow-xl rounded-lg ring-1 ring-black ring-opacity-5 divide-y-2 z-10">
 			<div className="my-2">
@@ -21,7 +21,7 @@ const PopoverMenu: React.FC<Props> = () => {
 			</div>
 			<div className="mb-2 pt-2 text-sm">
 				<Link to="/option" className="px-3 py-2 hover:bg-gray-100 block">
-					환경 설정
+					환경설정
 				</Link>
 			</div>
 
@@ -37,4 +37,4 @@ const PopoverMenu: React.FC<Props> = () => {
 	);
 };
 
-export default PopoverMenu;
+export default PopoverProfileMenu;

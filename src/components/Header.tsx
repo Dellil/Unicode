@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Icon from '@/lib/icon';
-import PopoverMenu from '@/components/PopoverMenu';
+import PopoverProfileMenu from '@/components/PopoverProfileMenu';
 
 interface Props {}
 
@@ -34,7 +34,7 @@ const Header: React.FC<Props> = () => {
 					</div>
 				</div>
 			</header>
-			{isProfileClicked && <PopoverMenu />}
+			{isProfileClicked && <PopoverProfileMenu />}
 		</>
 	);
 };
