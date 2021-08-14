@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import '@/style.css';
-import StoreContext, { stores } from '@/stores';
+import StoreContext, { Stores } from '@/stores';
 import App from '@/App';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<StoreContext.Provider value={stores}>
+		<StoreContext.Provider value={Stores}>
 			<App />
 		</StoreContext.Provider>
 	</React.StrictMode>,

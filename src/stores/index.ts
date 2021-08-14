@@ -1,28 +1,23 @@
 import React from 'react';
 
-type Stores = {
-	// userStore: UserStore;
+import WorkspaceStore from '@/stores/WorkspaceStore';
+
+type MobxStores = {
+	workspaceStore: WorkspaceStore;
 };
 
-export const stores: Stores = {
-	// userStore: new UserStore(),
+export const Stores: MobxStores = {
+	workspaceStore: new WorkspaceStore(),
 };
 
-const StoreContext = React.createContext<Stores | null>(null);
+export const useStores = () => {
+	const stores = React.useContext(StoreContext);
+	if (!stores) {
+		throw new Error('useStores must be used within a StoreProvider.');
+	}
+	return stores;
+};
+
+const StoreContext = React.createContext<MobxStores | null>(null);
 StoreContext.displayName = 'Mobx Context';
 export default StoreContext;
-
-/**
- * 
- class UserStore {
-	constructor() {
-		makeObservable(this, {
-			isLogined: computed,
-		});
-	}
-
-		get isLogined(): boolean {
-			return false;
-		}
-	}
- */
