@@ -20,7 +20,7 @@
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
-		"start": "TAILWIND_MODE=watch craco start",
+		"start": "cross-env TAILWIND_MODE=watch craco start",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject"
@@ -52,6 +52,7 @@
 		"@typescript-eslint/parser": "^4.29.1",
 		"autoprefixer": "^9",
 		"craco-alias": "^3.0.1",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-prettier": "^8.3.0",
