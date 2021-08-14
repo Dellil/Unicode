@@ -5,7 +5,7 @@ interface Props {}
 
 const Main: React.FC<Props> = () => {
 	return (
-		<div className="flex flex-row h-body-without-header">
+		<div className="flex flex-row w-full h-body-without-header">
 			<Workspaces />
 			<Exams />
 		</div>

@@ -10,3 +10,11 @@ body,
 	height: 100%;
 	font-family: 'Spoqa Han Sans', 'Roboto';
 }
+
+.h-body-without-header {
+	height: calc(100% - theme('height.12'));
+}
+
+.w-exams {
+	width: calc(100% - theme('width.72'));
+}
