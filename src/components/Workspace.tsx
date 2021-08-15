@@ -1,6 +1,4 @@
-import clsx from 'clsx';
-
-import List from '@/components/List';
+import { applyClassNameByBoolean } from '@/lib/style';
 
 interface Props {
 	title: string;
@@ -13,18 +11,19 @@ const Workspace: React.FC<Props> = ({
 	onWorkspaceClick,
 	currentWorkspace,
 }) => {
-	const isCurrent = title === currentWorkspace;
-
 	const style = 'transition py-2.5 cursor-pointer select-none';
-	const classes = clsx(
-		isCurrent ? `bg-gray-200 ${style}` : `hover:bg-gray-200 ${style}`,
+	const classes = applyClassNameByBoolean(
+		title === currentWorkspace,
+		'bg-gray-200',
+		'hover:bg-gray-200',
+		style,
 	);
+
 	return (
 		<>
 			<div className={classes} onClick={onWorkspaceClick}>
 				<div className="px-6 truncate font-light">{title}</div>
 			</div>
-			{isCurrent && <List />}
 		</>
 	);
 };
