@@ -11,5 +11,5 @@ ReactDOM.render(
 			<App />
 		</StoreContext.Provider>
 	</React.StrictMode>,
-	document.getElementById('root'),
+	document.getElementById('unicode-app'),
 );

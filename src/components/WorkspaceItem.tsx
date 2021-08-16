@@ -53,7 +53,7 @@ const WorkspaceItem: React.FC<Props> = () => {
 				<Icon
 					name="dotsMore"
 					className={iconClasses}
-					onClick={() => console.log('헤으응')}
+					onClick={() => console.log('ㅁㄴㅇㄹㄴ')}
 					onMouseEnter={onIconMouseEnter}
 					onMouseLeave={onIconMouseLeave}
 				/>
