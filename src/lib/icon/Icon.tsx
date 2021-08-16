@@ -9,7 +9,7 @@ type IconProps = {
 	name: Icons;
 	className?: string;
 	style?: React.CSSProperties;
-	onClick?: () => void;
+	onClick?: (e: any) => void;
 	onMouseEnter?: () => void;
 	onMouseLeave?: () => void;
 };

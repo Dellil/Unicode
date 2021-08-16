@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import faker from 'faker';
-
+import { Menu, Item, Separator, useContextMenu } from 'react-contexify';
+import 'react-contexify/dist/ReactContexify.css';
 import { applyClassNameByBoolean } from '@/lib/style';
 import Icon from '@/lib/icon';
+
+const MENU_ID = 'TEMP';
 
 interface Props {}
 
@@ -40,11 +43,25 @@ const WorkspaceItem: React.FC<Props> = () => {
 		'w-10 ml-2 px-1 rounded-sm',
 	);
 
+	const { show } = useContextMenu({
+		id: MENU_ID,
+	});
+
+	function handleContextMenu(
+		e:
+			| React.MouseEvent<HTMLDivElement, MouseEvent>
+			| React.MouseEvent<HTMLElement>,
+	) {
+		e.preventDefault();
+		show(e);
+	}
+
 	return (
 		<div
 			className={classes}
 			onMouseEnter={onItemMouseEnter}
 			onMouseLeave={onItemMouseLeave}
+			onContextMenu={handleContextMenu}
 		>
 			<div className="truncate select-none">
 				{`WorkspaceWorkspaceWorkspaceWorkspace - ${dummyWord}`}
@@ -53,11 +70,16 @@ const WorkspaceItem: React.FC<Props> = () => {
 				<Icon
 					name="dotsMore"
 					className={iconClasses}
-					onClick={() => console.log('ㅁㄴㅇㄹㄴ')}
+					onClick={handleContextMenu}
 					onMouseEnter={onIconMouseEnter}
 					onMouseLeave={onIconMouseLeave}
 				/>
 			)}
+			<Menu id={MENU_ID}>
+				<Item className="text-red-300">삭제</Item>
+				<Separator />
+				<Item>이름 바꾸기</Item>
+			</Menu>
 		</div>
 	);
 };

@@ -1,7 +1,5 @@
-import { observer } from 'mobx-react-lite';
-
 import WorkspaceTop from '@/components/WorkspaceTop';
-import WorkspaceItem from './WorkspaceItem';
+import WorkspaceItem from '@/components/WorkspaceItem';
 
 interface Props {}
 
@@ -21,4 +19,4 @@ const WorkspaceContainer: React.FC<Props> = ({ children }) => {
 	return <div className="mt-7">{children}</div>;
 };
 
-export default observer(Workspaces);
+export default Workspaces;
