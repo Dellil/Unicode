@@ -4,7 +4,7 @@ interface Props {}
 
 const PopoverProfileMenu: React.FC<Props> = () => {
 	return (
-		<div className=" absolute right-0 w-64 mr-6 flex flex-col justify-between shadow-xl rounded-lg ring-1 ring-black ring-opacity-5 divide-y-2 z-10 bg-white">
+		<div className=" absolute -left-40 w-64 mr-6 flex flex-col justify-between shadow-xl rounded-lg ring-1 ring-black ring-opacity-5 divide-y-2 z-10 bg-white">
 			<div className="my-2">
 				<Link
 					to="/profile"
