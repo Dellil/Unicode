@@ -9,13 +9,26 @@ type IconProps = {
 	name: Icons;
 	className?: string;
 	style?: React.CSSProperties;
+	onClick?: () => void;
+	onMouseEnter?: () => void;
+	onMouseLeave?: () => void;
 };
 
-const Icon = ({ name, className, style }: IconProps) => {
+const Icon = ({
+	name,
+	className,
+	style,
+	onClick,
+	onMouseEnter,
+	onMouseLeave,
+}: IconProps) => {
 	const combinedClasses = clsx(className, 'fill-current');
 	return React.createElement(svg[name], {
 		className: combinedClasses,
 		style,
+		onClick,
+		onMouseEnter,
+		onMouseLeave,
 	});
 };
 
