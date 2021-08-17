@@ -58,8 +58,6 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 			| React.MouseEvent<HTMLElement>,
 	) {
 		e.preventDefault();
-		console.log('---우클릭---');
-		console.log(title, id);
 		show(e);
 	}
 
@@ -67,8 +65,6 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 
 	const [renameModal, setRenameModal] = useState(false);
 	const onRenameClick = () => {
-		console.log('---이름변경---');
-		console.log(title, id);
 		setRenameModal(true);
 	};
 	const [renameInput, setRenameInput] = useState('');
@@ -79,6 +75,15 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 		setRenameModal(false);
 		setRenameInput('');
 		workspaceStore.renameWorkspace({ title: renameInput, id });
+	};
+
+	const [deleteModal, setDeleteModal] = useState(false);
+	const onDeleteClick = () => {
+		setDeleteModal(true);
+	};
+	const onDeleteButtonClick = () => {
+		setDeleteModal(false);
+		workspaceStore.deleteWorkspace(id);
 	};
 
 	return (
@@ -99,10 +104,20 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 				/>
 			)}
 			<Menu id={`${MENU_ID}+${id}`}>
-				<Item className="text-red-300">삭제</Item>
+				<Item className="text-red-300" onClick={onDeleteClick}>
+					삭제
+				</Item>
 				<Separator />
 				<Item onClick={onRenameClick}>이름 바꾸기</Item>
 			</Menu>
+			<Modal isOpen={deleteModal} onRequestClose={() => setDeleteModal(false)}>
+				<div>
+					<div>진짜 삭제할꼬야?</div>
+					<button className="ml-2 border-2" onClick={onDeleteButtonClick}>
+						삭제하기
+					</button>
+				</div>
+			</Modal>
 			<Modal isOpen={renameModal} onRequestClose={() => setRenameModal(false)}>
 				<div>
 					<input

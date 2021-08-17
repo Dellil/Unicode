@@ -24,4 +24,8 @@ export default class WorkspaceStore {
 		const idx = this.workspaces.findIndex(w => w.id === workspace.id);
 		this.workspaces[idx] = workspace;
 	}
+
+	deleteWorkspace(id: number) {
+		this.workspaces = this.workspaces.filter(workspace => workspace.id !== id);
+	}
 }
