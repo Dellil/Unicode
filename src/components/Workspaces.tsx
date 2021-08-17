@@ -12,8 +12,8 @@ const Workspaces: React.FC<Props> = () => {
 			<WorkspaceTop />
 			<WorkspaceContainer>
 				{/* WORKSPACE ITEM */}
-				{workspaceStore.workspaces.map(title => (
-					<WorkspaceItem title={title} key={title} />
+				{workspaceStore.workspaces.map(workspace => (
+					<WorkspaceItem {...workspace} key={workspace.id} />
 				))}
 			</WorkspaceContainer>
 		</div>
