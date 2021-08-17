@@ -9,7 +9,7 @@ export default class WorkspaceStore {
 		});
 	}
 
-	workspaces: Array<string> = [''];
+	workspaces: Array<string> = [];
 
 	addWorkspace(workspace: string) {
 		this.workspaces.push(workspace);

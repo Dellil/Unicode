@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import faker from 'faker';
 import { Menu, Item, Separator, useContextMenu } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.css';
 import { applyClassNameByBoolean } from '@/lib/style';
@@ -7,10 +6,11 @@ import Icon from '@/lib/icon';
 
 const MENU_ID = 'TEMP';
 
-interface Props {}
+interface Props {
+	title: string;
+}
 
-const WorkspaceItem: React.FC<Props> = () => {
-	const dummyWord = faker.lorem.word();
+const WorkspaceItem: React.FC<Props> = ({ title }) => {
 	const [isHovered, setHovered] = useState(false);
 	const onItemMouseEnter = () => {
 		setHovered(true);
@@ -24,7 +24,7 @@ const WorkspaceItem: React.FC<Props> = () => {
 		isHovered,
 		'bg-gray-200',
 		'bg-white',
-		'cursor-pointer py-2.5 px-6 font-light flex flex-row items-center',
+		'cursor-pointer py-2.5 px-6 font-light flex flex-row items-center justify-between',
 	);
 
 	const [isIconHovered, setIconHovered] = useState(false);
@@ -63,9 +63,7 @@ const WorkspaceItem: React.FC<Props> = () => {
 			onMouseLeave={onItemMouseLeave}
 			onContextMenu={handleContextMenu}
 		>
-			<div className="truncate select-none">
-				{`WorkspaceWorkspaceWorkspaceWorkspace - ${dummyWord}`}
-			</div>
+			<div className="truncate select-none">{title}</div>
 			{isHovered && (
 				<Icon
 					name="dotsMore"
