@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '@/stores';
 import WorkspaceTop from '@/components/WorkspaceTop';
@@ -7,12 +8,22 @@ interface Props {}
 
 const Workspaces: React.FC<Props> = () => {
 	const { workspaceStore } = useStores();
+	const [currentWorkspace, setCurrentWorkspace] = useState(-1);
+	const onWorkspaceItemClick = (itemId: number) => () => {
+		setCurrentWorkspace(itemId);
+	};
+
 	return (
 		<div className="w-72 border-r-2 h-full">
 			<WorkspaceTop />
 			<WorkspaceContainer>
 				{workspaceStore.workspaces.map(workspace => (
-					<WorkspaceItem {...workspace} key={workspace.id} />
+					<WorkspaceItem
+						{...workspace}
+						key={workspace.id}
+						onItemClick={onWorkspaceItemClick(workspace.id)}
+						currentWorkspaceId={currentWorkspace}
+					/>
 				))}
 			</WorkspaceContainer>
 		</div>

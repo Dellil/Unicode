@@ -12,9 +12,17 @@ const MENU_ID = 'TEMP';
 interface Props {
 	title: string;
 	id: number;
+	currentWorkspaceId: number;
+	onItemClick: () => void;
 }
 
-const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
+const WorkspaceItem: React.FC<Props> = ({
+	title,
+	id,
+	currentWorkspaceId,
+	onItemClick,
+}) => {
+	const isCurrent = currentWorkspaceId === id;
 	const [isHovered, setHovered] = useState(false);
 	const onItemMouseEnter = () => {
 		setHovered(true);
@@ -26,8 +34,8 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 
 	const classes = applyClassNameByBoolean(
 		isHovered,
-		'bg-gray-200',
-		'bg-white',
+		'bg-gray-300',
+		isCurrent ? 'bg-gray-200' : 'bg-white',
 		'cursor-pointer py-2.5 px-6 font-light flex flex-row items-center justify-between',
 	);
 
@@ -42,12 +50,14 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 
 	const iconClasses = applyClassNameByBoolean(
 		isIconHovered,
+		'bg-gray-400',
 		'bg-gray-300',
-		'bg-gray-200',
 		'w-10 ml-2 px-1 rounded-sm',
 	);
 
-	// id must be unique!
+	/*
+	 * @todo id must be unique!
+	 */
 	const { show } = useContextMenu({
 		id: `${MENU_ID}+${id}`,
 	});
@@ -92,6 +102,7 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 			onMouseEnter={onItemMouseEnter}
 			onMouseLeave={onItemMouseLeave}
 			onContextMenu={handleContextMenu}
+			onClick={onItemClick}
 		>
 			<div className="truncate select-none">{title}</div>
 			{isHovered && (
@@ -110,6 +121,7 @@ const WorkspaceItem: React.FC<Props> = ({ title, id }) => {
 				<Separator />
 				<Item onClick={onRenameClick}>이름 바꾸기</Item>
 			</Menu>
+
 			<Modal isOpen={deleteModal} onRequestClose={() => setDeleteModal(false)}>
 				<div>
 					<div>진짜 삭제할꼬야?</div>

@@ -10,7 +10,7 @@ export default class WorkspaceStore {
 	}
 
 	_workspaces: Array<{ title: string; id: number }> = [
-		{ id: 0, title: 'lorem workspace' },
+		{ id: 0, title: 'Language workspace' },
 		{ id: 1, title: 'juuuuust workspace' },
 	];
 
