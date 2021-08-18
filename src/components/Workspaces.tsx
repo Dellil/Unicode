@@ -11,7 +11,6 @@ const Workspaces: React.FC<Props> = () => {
 		<div className="w-72 border-r-2 h-full">
 			<WorkspaceTop />
 			<WorkspaceContainer>
-				{/* WORKSPACE ITEM */}
 				{workspaceStore.workspaces.map(workspace => (
 					<WorkspaceItem {...workspace} key={workspace.id} />
 				))}

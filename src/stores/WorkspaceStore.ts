@@ -1,31 +1,33 @@
-import { makeAutoObservable, observable, action } from 'mobx';
+import { makeAutoObservable, observable, action, computed } from 'mobx';
 
 export default class WorkspaceStore {
 	constructor() {
 		makeAutoObservable(this, {
-			workspaces: observable,
+			_workspaces: observable,
+			workspaces: computed,
 			addWorkspace: action,
-			setWorkspaces: action,
 		});
 	}
 
-	workspaces: Array<{ title: string; id: number }> = [];
+	_workspaces: Array<{ title: string; id: number }> = [
+		{ id: 0, title: 'lorem workspace' },
+		{ id: 1, title: 'juuuuust workspace' },
+	];
 
-	addWorkspace(workspace: string) {
-		this.workspaces.push({ title: workspace, id: this.workspaces.length });
+	get workspaces() {
+		return this._workspaces;
 	}
 
-	setWorkspaces(workspaces: Array<{ title: string; id: number }>) {
-		this.workspaces = workspaces;
+	addWorkspace(workspace: string) {
+		this._workspaces.push({ title: workspace, id: this.workspaces.length });
 	}
 
 	renameWorkspace(workspace: { title: string; id: number }) {
-		console.log(workspace);
 		const idx = this.workspaces.findIndex(w => w.id === workspace.id);
-		this.workspaces[idx] = workspace;
+		this._workspaces[idx] = workspace;
 	}
 
 	deleteWorkspace(id: number) {
-		this.workspaces = this.workspaces.filter(workspace => workspace.id !== id);
+		this._workspaces = this.workspaces.filter(workspace => workspace.id !== id);
 	}
 }
