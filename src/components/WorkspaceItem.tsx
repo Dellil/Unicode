@@ -11,8 +11,8 @@ const MENU_ID = 'WORKSPACE_ITEM';
 
 interface Props {
 	title: string;
-	id: number;
-	currentWorkspaceId: number;
+	id: string;
+	currentWorkspaceId: string;
 	onItemClick: () => void;
 }
 
@@ -77,11 +77,10 @@ const WorkspaceItem: React.FC<Props> = ({
 			| React.MouseEvent<HTMLElement>,
 	) {
 		e.preventDefault();
-		// e.stopPropagation();
 		show(e);
 	}
 
-	const { workspaceStore } = useStores();
+	const { workspaceStore, subjectStore } = useStores();
 
 	const [renameModal, setRenameModal] = useState(false);
 	const onRenameClick = () => {
@@ -104,6 +103,20 @@ const WorkspaceItem: React.FC<Props> = ({
 	const onDeleteButtonClick = () => {
 		setDeleteModal(false);
 		workspaceStore.deleteWorkspace(id);
+	};
+
+	const [createSubjectModal, setCreateSubjectModal] = useState(false);
+	const onCreateSubjectClick = () => {
+		setCreateSubjectModal(true);
+	};
+	const [subjectInput, setSubjectInput] = useState('');
+	const onSubjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSubjectInput(e.currentTarget.value);
+	};
+	const onSubjectButtonClick = () => {
+		setCreateSubjectModal(false);
+		setSubjectInput('');
+		subjectStore.addSubject(subjectInput, id);
 	};
 
 	return (
@@ -134,6 +147,8 @@ const WorkspaceItem: React.FC<Props> = ({
 				</Item>
 				<Separator />
 				<Item onClick={onRenameClick}>이름 바꾸기</Item>
+				<Separator />
+				<Item onClick={onCreateSubjectClick}>주제 만들기</Item>
 			</Menu>
 
 			<Modal isOpen={deleteModal} onRequestClose={() => setDeleteModal(false)}>
@@ -154,6 +169,23 @@ const WorkspaceItem: React.FC<Props> = ({
 					/>
 					<button className="ml-2 border-2" onClick={onRenameButtonClick}>
 						워크스페이스 이름 변경하기
+					</button>
+				</div>
+			</Modal>
+
+			<Modal
+				isOpen={createSubjectModal}
+				onRequestClose={() => setCreateSubjectModal(false)}
+			>
+				<div>
+					<input
+						type="text"
+						value={subjectInput}
+						onChange={onSubjectChange}
+						className="border-2"
+					/>
+					<button className="ml-2 border-2" onClick={onSubjectButtonClick}>
+						주제 만들기
 					</button>
 				</div>
 			</Modal>

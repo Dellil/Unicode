@@ -1,4 +1,5 @@
 import { makeAutoObservable, observable, action, computed } from 'mobx';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class WorkspaceStore {
 	constructor() {
@@ -9,9 +10,9 @@ export default class WorkspaceStore {
 		});
 	}
 
-	_workspaces: Array<{ title: string; id: number }> = [
-		{ id: 0, title: 'Language workspace' },
-		{ id: 1, title: 'juuuuust workspace' },
+	_workspaces: Array<{ title: string; id: string }> = [
+		{ id: uuidv4(), title: 'Language workspace' },
+		{ id: uuidv4(), title: 'juuuuust workspace' },
 	];
 
 	get workspaces() {
@@ -19,15 +20,15 @@ export default class WorkspaceStore {
 	}
 
 	addWorkspace(workspace: string) {
-		this._workspaces.push({ title: workspace, id: this.workspaces.length });
+		this._workspaces.push({ title: workspace, id: uuidv4() });
 	}
 
-	renameWorkspace(workspace: { title: string; id: number }) {
+	renameWorkspace(workspace: { title: string; id: string }) {
 		const idx = this.workspaces.findIndex(w => w.id === workspace.id);
 		this._workspaces[idx] = workspace;
 	}
 
-	deleteWorkspace(id: number) {
+	deleteWorkspace(id: string) {
 		this._workspaces = this.workspaces.filter(workspace => workspace.id !== id);
 	}
 }

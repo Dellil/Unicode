@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '@/stores';
 import WorkspaceTop from '@/components/WorkspaceTop';
@@ -7,11 +7,15 @@ import WorkspaceItem from '@/components/WorkspaceItem';
 interface Props {}
 
 const Workspaces: React.FC<Props> = () => {
-	const { workspaceStore } = useStores();
-	const [currentWorkspace, setCurrentWorkspace] = useState(-1);
-	const onWorkspaceItemClick = (itemId: number) => () => {
+	const { workspaceStore, subjectStore } = useStores();
+	const [currentWorkspace, setCurrentWorkspace] = useState('');
+	const onWorkspaceItemClick = (itemId: string) => () => {
 		setCurrentWorkspace(itemId);
 	};
+
+	useEffect(() => {
+		subjectStore.initSubjects(workspaceStore.workspaces);
+	}, []);
 
 	return (
 		<div className="w-72 border-r-2 h-full">
