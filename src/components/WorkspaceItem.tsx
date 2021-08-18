@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Menu, Item, Separator, useContextMenu } from 'react-contexify';
-import 'react-contexify/dist/ReactContexify.css';
 import Modal from 'react-modal';
 
 import { applyClassNameByBoolean } from '@/lib/style';
@@ -8,7 +7,7 @@ import Icon from '@/lib/icon';
 import { useStores } from '@/stores';
 import Subjects from '@/components/Subjects';
 
-const MENU_ID = 'TEMP';
+const MENU_ID = 'WORKSPACE_ITEM';
 
 interface Props {
 	title: string;
@@ -24,12 +23,21 @@ const WorkspaceItem: React.FC<Props> = ({
 	onItemClick,
 }) => {
 	const isCurrentWorkspace = currentWorkspaceId === id;
+	/**
+	 * @todo hover hooks로 만들기
+	 */
 	const [isHovered, setHovered] = useState(false);
-	const onItemMouseEnter = () => {
+	const onItemMouseEnter = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) => {
+		e.stopPropagation();
 		setHovered(true);
 	};
 
-	const onItemMouseLeave = () => {
+	const onItemMouseLeave = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) => {
+		e.stopPropagation();
 		setHovered(false);
 	};
 
@@ -37,7 +45,7 @@ const WorkspaceItem: React.FC<Props> = ({
 		isHovered,
 		'bg-gray-300',
 		isCurrentWorkspace ? 'bg-gray-200' : 'bg-white',
-		'cursor-pointer py-2.5 px-6 font-light',
+		'cursor-pointer py-2.5 font-light',
 	);
 
 	const [isIconHovered, setIconHovered] = useState(false);
@@ -53,7 +61,7 @@ const WorkspaceItem: React.FC<Props> = ({
 		isIconHovered,
 		'bg-gray-400',
 		'bg-gray-300',
-		'w-10 ml-2 px-1 rounded-sm',
+		'w-10 ml-2 px-1 mr-3 rounded-sm',
 	);
 
 	/*
@@ -69,6 +77,7 @@ const WorkspaceItem: React.FC<Props> = ({
 			| React.MouseEvent<HTMLElement>,
 	) {
 		e.preventDefault();
+		// e.stopPropagation();
 		show(e);
 	}
 
@@ -106,7 +115,7 @@ const WorkspaceItem: React.FC<Props> = ({
 			onClick={onItemClick}
 		>
 			<div className="flex flex-row items-center justify-between">
-				<div className="truncate select-none">{title}</div>
+				<div className="truncate select-none pl-6">{title}</div>
 				{isHovered && (
 					<Icon
 						name="dotsMore"

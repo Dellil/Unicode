@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import 'react-contexify/dist/ReactContexify.css';
 
 import '@/style.css';
 import StoreContext, { Stores } from '@/stores';

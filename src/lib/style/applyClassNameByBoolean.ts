@@ -5,9 +5,9 @@ import clsx from 'clsx';
  * @param classesIfFlagTrue
  * @param classesIfFlagFalse
  * @param commonClasses
- * 특정 값이 true / false일때 클래스 이름 다르게 적용시켜주는 함수
+ * 파라미터로 넣은 flag가 true / false일때 클래스 다르게 적용시켜주는 함수
  *
- * applyClassNameByBoolean(title === currentWorkspace, 'true일때 넣을 클래스', 'false일때 넣을 클래스', 'true/false 공통으로 쓰는 class')
+ * applyClassNameByBoolean(title === currentWorkspace.title, 'true일때 넣을 클래스', 'false일때 넣을 클래스', 'true/false 공통으로 쓰는 class')
  */
 export default function applyClassNameByBoolean(
 	flag: Boolean,
