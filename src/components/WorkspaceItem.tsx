@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import { applyClassNameByBoolean } from '@/lib/style';
 import Icon from '@/lib/icon';
 import { useStores } from '@/stores';
+import Subjects from '@/components/Subjects';
 
 const MENU_ID = 'TEMP';
 
@@ -22,7 +23,7 @@ const WorkspaceItem: React.FC<Props> = ({
 	currentWorkspaceId,
 	onItemClick,
 }) => {
-	const isCurrent = currentWorkspaceId === id;
+	const isCurrentWorkspace = currentWorkspaceId === id;
 	const [isHovered, setHovered] = useState(false);
 	const onItemMouseEnter = () => {
 		setHovered(true);
@@ -35,8 +36,8 @@ const WorkspaceItem: React.FC<Props> = ({
 	const classes = applyClassNameByBoolean(
 		isHovered,
 		'bg-gray-300',
-		isCurrent ? 'bg-gray-200' : 'bg-white',
-		'cursor-pointer py-2.5 px-6 font-light flex flex-row items-center justify-between',
+		isCurrentWorkspace ? 'bg-gray-200' : 'bg-white',
+		'cursor-pointer py-2.5 px-6 font-light',
 	);
 
 	const [isIconHovered, setIconHovered] = useState(false);
@@ -104,16 +105,20 @@ const WorkspaceItem: React.FC<Props> = ({
 			onContextMenu={handleContextMenu}
 			onClick={onItemClick}
 		>
-			<div className="truncate select-none">{title}</div>
-			{isHovered && (
-				<Icon
-					name="dotsMore"
-					className={iconClasses}
-					onClick={handleContextMenu}
-					onMouseEnter={onIconMouseEnter}
-					onMouseLeave={onIconMouseLeave}
-				/>
-			)}
+			<div className="flex flex-row items-center justify-between">
+				<div className="truncate select-none">{title}</div>
+				{isHovered && (
+					<Icon
+						name="dotsMore"
+						className={iconClasses}
+						onClick={handleContextMenu}
+						onMouseEnter={onIconMouseEnter}
+						onMouseLeave={onIconMouseLeave}
+					/>
+				)}
+			</div>
+			{isCurrentWorkspace && <Subjects workspaceId={id} />}
+
 			<Menu id={`${MENU_ID}+${id}`}>
 				<Item className="text-red-300" onClick={onDeleteClick}>
 					삭제
