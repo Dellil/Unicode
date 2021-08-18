@@ -9,7 +9,7 @@ import { useStores } from '@/stores';
 
 const MENU_ID = 'SUBJECTS';
 interface Props {
-	workspaceId: number;
+	workspaceId: string;
 }
 
 const Subjects: React.FC<Props> = ({ workspaceId }) => {
@@ -40,8 +40,8 @@ const Subjects: React.FC<Props> = ({ workspaceId }) => {
 };
 
 interface ItemProps {
-	workspaceId: number;
-	id: number;
+	workspaceId: string;
+	id: string;
 }
 const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 	/**
