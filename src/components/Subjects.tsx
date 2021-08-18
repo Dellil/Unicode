@@ -1,6 +1,6 @@
 interface Props {}
 
-const List: React.FC<Props> = () => {
+const Subjects: React.FC<Props> = () => {
 	return (
 		<div>
 			<ul>
@@ -12,4 +12,4 @@ const List: React.FC<Props> = () => {
 	);
 };
 
-export default List;
+export default Subjects;
