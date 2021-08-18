@@ -48,6 +48,10 @@ export default class SubjectStore {
 		});
 	}
 
+	addEmptySubject(workspaceId: string) {
+		this.subjectTable[workspaceId] = [];
+	}
+
 	renameSubject(subjectId: string, title: string, workspaceId: string) {
 		const idx = this.subjectTable[workspaceId].findIndex(
 			s => s.id === subjectId,

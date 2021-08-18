@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { v4 as uuidv4 } from 'uuid';
 
 import Icon from '@/lib/icon';
 import { useStores } from '@/stores';
@@ -14,9 +15,11 @@ const WorkspaceIconMenu: React.FC<Props> = () => {
 		setInput(e.currentTarget.value);
 	};
 
-	const { workspaceStore } = useStores();
+	const { workspaceStore, subjectStore } = useStores();
 	const onCreateButtonClick = () => {
-		workspaceStore.addWorkspace(input);
+		const id = uuidv4();
+		workspaceStore.addWorkspace(input, id);
+		subjectStore.addEmptySubject(id);
 		setInput('');
 		setPlusButtonClicked(false);
 	};

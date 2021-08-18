@@ -19,8 +19,8 @@ export default class WorkspaceStore {
 		return this._workspaces;
 	}
 
-	addWorkspace(workspace: string) {
-		this._workspaces.push({ title: workspace, id: uuidv4() });
+	addWorkspace(workspace: string, id: string) {
+		this._workspaces.push({ title: workspace, id });
 	}
 
 	renameWorkspace(workspace: { title: string; id: string }) {
