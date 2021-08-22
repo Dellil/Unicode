@@ -1,18 +1,12 @@
-import { makeAutoObservable, observable, action } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class SubjectStore {
 	constructor() {
-		makeAutoObservable(this, {
-			subjectTable: observable,
-			getSubjects: action,
-			addSubject: action,
-			renameSubject: action,
-			deleteSubject: action,
-		});
+		makeAutoObservable(this);
 	}
 
-	subjectTable: {
+	private subjectTable: {
 		[workspaceId: string]: Array<{ id: string; title: string }>;
 	} = {};
 

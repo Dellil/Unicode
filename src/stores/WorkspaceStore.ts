@@ -1,16 +1,12 @@
-import { makeAutoObservable, observable, action, computed } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class WorkspaceStore {
 	constructor() {
-		makeAutoObservable(this, {
-			_workspaces: observable,
-			workspaces: computed,
-			addWorkspace: action,
-		});
+		makeAutoObservable(this);
 	}
 
-	_workspaces: Array<{ title: string; id: string }> = [
+	private _workspaces: Array<{ title: string; id: string }> = [
 		{ id: uuidv4(), title: 'Language workspace' },
 		{ id: uuidv4(), title: 'juuuuust workspace' },
 	];
