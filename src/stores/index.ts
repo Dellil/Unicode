@@ -2,18 +2,18 @@ import React from 'react';
 
 import WorkspaceStore from '@/stores/WorkspaceStore';
 import SubjectStore from '@/stores/SubjectStore';
-import ExamStore from '@/stores/ExamStore';
+import TestStore from '@/stores/TestStore';
 
 type MobxStores = {
 	workspaceStore: WorkspaceStore;
 	subjectStore: SubjectStore;
-	examStore: ExamStore;
+	testStore: TestStore;
 };
 
 export const Stores: MobxStores = {
 	workspaceStore: new WorkspaceStore(),
 	subjectStore: new SubjectStore(),
-	examStore: new ExamStore(),
+	testStore: new TestStore(),
 };
 
 export const useStores = () => {

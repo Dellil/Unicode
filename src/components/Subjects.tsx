@@ -44,9 +44,9 @@ interface ItemProps {
 	id: string;
 }
 const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
-	const { examStore } = useStores();
+	const { testStore } = useStores();
 	const onSubjectItemClick = () => {
-		examStore.setSelectedSubjectIdForFindingExams(id);
+		testStore.setSelectedSubjectIdForFindingTests(id);
 	};
 	/**
 	 * @todo hover hooks로 만들기

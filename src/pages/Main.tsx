@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
-import { toJS } from 'mobx';
 
 import { useStores } from '@/stores';
 import Workspaces from '@/components/Workspaces';
-import Exams from '@/components/Exams';
+import Tests from '@/components/Tests';
 
 interface Props {}
 
 const Main: React.FC<Props> = () => {
-	const { workspaceStore, subjectStore, examStore } = useStores();
+	const { workspaceStore, subjectStore } = useStores();
 	useEffect(() => {
 		subjectStore.initSubjects(workspaceStore.workspaces);
-		console.log(toJS(subjectStore.getAllSubjects()));
 	}, []);
 
 	return (
 		<div className="flex flex-row w-full h-body-without-header">
 			<Workspaces />
-			<Exams />
+			<Tests />
 		</div>
 	);
 };

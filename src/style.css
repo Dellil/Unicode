@@ -15,6 +15,6 @@ body,
 	height: calc(100% - theme('height.12'));
 }
 
-.w-exams {
+.w-tests {
 	width: calc(100% - theme('width.72'));
 }
