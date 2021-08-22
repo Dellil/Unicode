@@ -3,5 +3,6 @@ import { ReactComponent as expandMore } from './expand_more.svg';
 import { ReactComponent as plus } from './plus.svg';
 import { ReactComponent as search } from './search.svg';
 import { ReactComponent as dotsMore } from './dots_more.svg';
+import { ReactComponent as emptyStateIllustration } from './empty_state_illustration.svg';
 
-export { options, expandMore, plus, search, dotsMore };
+export { options, expandMore, plus, search, dotsMore, emptyStateIllustration };

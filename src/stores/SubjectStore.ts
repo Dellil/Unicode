@@ -35,6 +35,10 @@ export default class SubjectStore {
 		return this.subjectTable[workspaceId];
 	}
 
+	getAllSubjects() {
+		return this.subjectTable;
+	}
+
 	addSubject(title: string, workspaceId: string) {
 		this.subjectTable[workspaceId].push({
 			id: uuidv4(),

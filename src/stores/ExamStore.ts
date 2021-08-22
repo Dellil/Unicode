@@ -11,8 +11,8 @@ export default class SubjectStore {
 
 	initExams(
 		subjects: Array<{
-			title: string;
 			id: string;
+			title: string;
 		}>,
 	) {
 		/**
@@ -21,12 +21,21 @@ export default class SubjectStore {
 		console.log(subjects);
 		console.log('호출됨!');
 
+		this.examTable['SELECTED'] = [];
 		subjects.map(s => {
 			this.examTable[s.id] = [];
 		});
 	}
 
-	getSubjects(subjectId: string) {
-		return this.examTable[subjectId];
+	getExams() {
+		const isExamsExisted = this.examTable[this.selectedSubjectId];
+		if (!isExamsExisted) this.examTable[this.selectedSubjectId] = [];
+		return this.examTable[this.selectedSubjectId];
+	}
+
+	private selectedSubjectId = 'SELECTED';
+
+	setSelectedSubjectIdForFindingExams(subjectId: string) {
+		this.selectedSubjectId = subjectId;
 	}
 }

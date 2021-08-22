@@ -44,6 +44,10 @@ interface ItemProps {
 	id: string;
 }
 const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
+	const { examStore } = useStores();
+	const onSubjectItemClick = () => {
+		examStore.setSelectedSubjectIdForFindingExams(id);
+	};
 	/**
 	 * @todo hover hooks로 만들기
 	 */
@@ -60,7 +64,7 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 		isHovered,
 		'bg-gray-50',
 		'bg-gray-transparent',
-		'text-sm h-10 flex flex-row justify-between items-center hover:',
+		'text-sm h-10 flex flex-row justify-between items-center',
 	);
 
 	const [isIconHovered, setIconHovered] = useState(false);
@@ -120,22 +124,22 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 
 	return (
 		<li
-			className={classes}
 			onMouseEnter={onItemMouseEnter}
 			onMouseLeave={onItemMouseLeave}
 			onContextMenu={handleContextMenu}
 		>
-			<span className="px-6 truncate block">{children}</span>
-			{isHovered && (
-				<Icon
-					onMouseEnter={onIconMouseEnter}
-					onClick={handleContextMenu}
-					onMouseLeave={onIconMouseLeave}
-					className={iconClasses}
-					name="dotsMore"
-				/>
-			)}
-
+			<div onClick={onSubjectItemClick} className={classes}>
+				<span className="px-6 truncate block">{children}</span>
+				{isHovered && (
+					<Icon
+						onMouseEnter={onIconMouseEnter}
+						onClick={handleContextMenu}
+						onMouseLeave={onIconMouseLeave}
+						className={iconClasses}
+						name="dotsMore"
+					/>
+				)}
+			</div>
 			<Menu id={`${MENU_ID}_${id}`}>
 				<Item className="text-red-300" onClick={onDeleteClick}>
 					삭제
