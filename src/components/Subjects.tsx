@@ -122,6 +122,21 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 		subjectStore.deleteSubject(id, workspaceId);
 	};
 
+	const [createTestInput, setCreateTestInput] = useState('');
+	const onCreateTestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setCreateTestInput(e.currentTarget.value);
+	};
+
+	const [createTestModal, setCreateTestModal] = useState(false);
+	const onCreateTestClick = () => {
+		setCreateTestModal(true);
+	};
+	const onCreateTestButtonClick = () => {
+		setCreateTestModal(false);
+		testStore.createTest(createTestInput);
+		setCreateTestInput('');
+	};
+
 	return (
 		<li
 			onMouseEnter={onItemMouseEnter}
@@ -146,6 +161,8 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 				</Item>
 				<Separator />
 				<Item onClick={onRenameClick}>이름 바꾸기</Item>
+				<Separator />
+				<Item onClick={onCreateTestClick}>테스트 생성하기</Item>
 			</Menu>
 
 			<Modal isOpen={deleteModal} onRequestClose={() => setDeleteModal(false)}>
@@ -166,6 +183,22 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 					/>
 					<button className="ml-2 border-2" onClick={onRenameButtonClick}>
 						주제 이름 변경하기
+					</button>
+				</div>
+			</Modal>
+			<Modal
+				isOpen={createTestModal}
+				onRequestClose={() => setCreateTestModal(false)}
+			>
+				<div>
+					<input
+						type="text"
+						value={createTestInput}
+						onChange={onCreateTestChange}
+						className="border-2"
+					/>
+					<button className="ml-2 border-2" onClick={onCreateTestButtonClick}>
+						테스트 생성하기
 					</button>
 				</div>
 			</Modal>
