@@ -47,11 +47,11 @@ export default class SubjectStore {
 		});
 	}
 
-	renameTest(selectedId: string) {
+	renameTest(selectedId: string, title: string) {
 		const idx = this.testTable[this.selectedSubjectId].findIndex(
 			test => test.id === selectedId,
 		);
-		this.testTable[this.selectedSubjectId][idx].title = selectedId;
+		this.testTable[this.selectedSubjectId][idx].title = title;
 	}
 
 	deleteTest(selectedId: string) {
