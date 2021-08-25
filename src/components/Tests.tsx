@@ -11,7 +11,7 @@ const Tests: React.FC<Props> = () => {
 	const tests = testStore.getTests();
 
 	return (
-		<div className="w-tests border-r-2 bg-gray-100 select-none flex flex-row p-2 space-x-4">
+		<div className="w-tests border-r-2 bg-gray-100 select-none flex flex-row p-2 space-x-4 flex-wrap">
 			{tests.length === 0 && <EmptyTest />}
 			{tests.length > 0 && <TestList tests={tests} />}
 		</div>
