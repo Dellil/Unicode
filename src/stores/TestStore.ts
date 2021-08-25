@@ -46,4 +46,18 @@ export default class SubjectStore {
 			title: testTitle,
 		});
 	}
+
+	renameTest(selectedId: string) {
+		const idx = this.testTable[this.selectedSubjectId].findIndex(
+			test => test.id === selectedId,
+		);
+		this.testTable[this.selectedSubjectId][idx].title = selectedId;
+	}
+
+	deleteTest(selectedId: string) {
+		const idx = this.testTable[this.selectedSubjectId].findIndex(
+			test => test.id === selectedId,
+		);
+		this.testTable[this.selectedSubjectId].splice(idx, 1);
+	}
 }
