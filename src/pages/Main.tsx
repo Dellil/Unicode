@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useStores } from '@/stores';
 import Workspaces from '@/components/Workspaces';
-import Tests from '@/components/Tests';
+import TestPapers from '@/components/TestPapers';
 
 interface Props {}
 
@@ -15,7 +15,7 @@ const Main: React.FC<Props> = () => {
 	return (
 		<div className="flex flex-row w-full h-body-without-header">
 			<Workspaces />
-			<Tests />
+			<TestPapers />
 		</div>
 	);
 };

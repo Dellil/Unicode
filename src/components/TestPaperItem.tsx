@@ -7,11 +7,11 @@ import Icon from '@/lib/icon';
 
 const MENU_ID = 'SUBJECTS';
 interface Props {
-	test: { id: string; title: string };
+	testPaper: { id: string; title: string };
 }
 
-const TestItem: React.FC<Props> = ({ test }) => {
-	const { testStore } = useStores();
+const TestPaperItem: React.FC<Props> = ({ testPaper }) => {
+	const { testPaperStore } = useStores();
 
 	// 이름 변경
 	const [renameModal, setRenameModal] = useState(false);
@@ -25,7 +25,7 @@ const TestItem: React.FC<Props> = ({ test }) => {
 	const onRenameButtonClick = () => {
 		setRenameModal(false);
 		setRenameInput('');
-		testStore.renameTest(test.id, renameInput);
+		testPaperStore.renameTestPaper(testPaper.id, renameInput);
 	};
 
 	// 삭제
@@ -35,11 +35,11 @@ const TestItem: React.FC<Props> = ({ test }) => {
 	};
 	const onDeleteButtonClick = () => {
 		setDeleteModal(false);
-		testStore.deleteTest(test.id);
+		testPaperStore.deleteTestPaper(testPaper.id);
 	};
 
 	const { show } = useContextMenu({
-		id: `${MENU_ID}_${test.id}`,
+		id: `${MENU_ID}_${testPaper.id}`,
 	});
 
 	function handleContextMenu(
@@ -59,14 +59,14 @@ const TestItem: React.FC<Props> = ({ test }) => {
 				onContextMenu={handleContextMenu}
 			>
 				<div className="w-full h-48 bg-transparent flex flex-row justify-center items-center border-b-2 px-6">
-					<div className="truncate">{`${test.title}`}</div>
+					<div className="truncate">{`${testPaper.title}`}</div>
 				</div>
 				<div className="h-12 bg-transparent flex flex-row flex-row-reverse items-center">
 					<div onClick={handleContextMenu}>
 						<Icon name="dotsMore" className="mr-3 text-gray-700" />
 					</div>
 				</div>
-				<Menu id={`${MENU_ID}_${test.id}`}>
+				<Menu id={`${MENU_ID}_${testPaper.id}`}>
 					<Item className="text-red-300" onClick={onDeleteClick}>
 						삭제
 					</Item>
@@ -91,7 +91,7 @@ const TestItem: React.FC<Props> = ({ test }) => {
 						className="border-2"
 					/>
 					<button className="ml-2 border-2" onClick={onRenameButtonClick}>
-						주제 이름 변경하기
+						테스트지 이름 변경하기
 					</button>
 				</div>
 			</Modal>
@@ -99,4 +99,4 @@ const TestItem: React.FC<Props> = ({ test }) => {
 	);
 };
 
-export default TestItem;
+export default TestPaperItem;

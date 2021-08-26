@@ -6,22 +6,22 @@ import Icon from '@/lib/icon';
 
 interface Props {}
 
-const TestCreateButton: React.FC<Props> = () => {
-	const { testStore } = useStores();
+const TestPaperCreateButton: React.FC<Props> = () => {
+	const { testPaperStore } = useStores();
 
-	const [createTestInput, setCreateTestInput] = useState('');
-	const onCreateTestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setCreateTestInput(e.currentTarget.value);
+	const [createTestPaperInput, setCreateTestPaperInput] = useState('');
+	const onCreateTestPaperChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setCreateTestPaperInput(e.currentTarget.value);
 	};
 
-	const [createTestModal, setCreateTestModal] = useState(false);
+	const [createTestPaperModal, setCreateTestPaperModal] = useState(false);
 	const onCreateTestClick = () => {
-		setCreateTestModal(true);
+		setCreateTestPaperModal(true);
 	};
 	const onCreateTestButtonClick = () => {
-		setCreateTestModal(false);
-		testStore.createTest(createTestInput);
-		setCreateTestInput('');
+		setCreateTestPaperModal(false);
+		testPaperStore.createTestPaper(createTestPaperInput);
+		setCreateTestPaperInput('');
 	};
 	return (
 		<>
@@ -34,18 +34,18 @@ const TestCreateButton: React.FC<Props> = () => {
 				</div>
 			</div>
 			<Modal
-				isOpen={createTestModal}
-				onRequestClose={() => setCreateTestModal(false)}
+				isOpen={createTestPaperModal}
+				onRequestClose={() => setCreateTestPaperModal(false)}
 			>
 				<div>
 					<input
 						type="text"
-						value={createTestInput}
-						onChange={onCreateTestChange}
+						value={createTestPaperInput}
+						onChange={onCreateTestPaperChange}
 						className="border-2"
 					/>
 					<button className="ml-2 border-2" onClick={onCreateTestButtonClick}>
-						테스트 생성하기
+						테스트지 생성하기
 					</button>
 				</div>
 			</Modal>
@@ -53,4 +53,4 @@ const TestCreateButton: React.FC<Props> = () => {
 	);
 };
 
-export default TestCreateButton;
+export default TestPaperCreateButton;

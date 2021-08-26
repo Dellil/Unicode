@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 
-import Icon from '@/lib/icon';
+import Illustration from '@/lib/icon';
 import { useStores } from '@/stores';
 
 interface Props {}
 
-const EmptyExam: React.FC<Props> = () => {
+const EmptyTestPaper: React.FC<Props> = () => {
 	const [isModalOpened, setModalOpened] = useState(false);
-	const onEmptyExamClick = () => {
+	const onEmptyTestPaperClick = () => {
 		setModalOpened(true);
 	};
 
-	const { testStore } = useStores();
+	const { testPaperStore } = useStores();
 	const [createInput, setCreateInput] = useState('');
 	const onCreateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCreateInput(e.currentTarget.value);
 	};
 	const onCreateButtonClick = () => {
 		setModalOpened(false);
-		testStore.createTest(createInput);
+		testPaperStore.createTestPaper(createInput);
 		setCreateInput('');
 	};
 
@@ -27,15 +27,15 @@ const EmptyExam: React.FC<Props> = () => {
 		<>
 			<div
 				className="w-full h-full flex flex-col justify-center items-center cursor-pointer"
-				onClick={onEmptyExamClick}
+				onClick={onEmptyTestPaperClick}
 			>
 				<IllustrationContainer>
-					<Icon
+					<Illustration
 						name="emptyStateIllustration"
 						className="filter grayscale w-1/2"
 					/>
 				</IllustrationContainer>
-				<span className="text-gray-800 select-none">Add New Test!</span>
+				<span className="text-gray-800 select-none">Add New TestPaper!</span>
 			</div>
 			<Modal
 				isOpen={isModalOpened}
@@ -65,4 +65,4 @@ const IllustrationContainer: React.FC<{}> = ({ children }) => {
 	);
 };
 
-export default EmptyExam;
+export default EmptyTestPaper;

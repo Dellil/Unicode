@@ -44,9 +44,9 @@ interface ItemProps {
 	id: string;
 }
 const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
-	const { testStore } = useStores();
+	const { testPaperStore } = useStores();
 	const onSubjectItemClick = () => {
-		testStore.setSelectedSubjectIdForFindingTests(id);
+		testPaperStore.setSelectedSubjectIdForFindingTestPapers(id);
 	};
 	/**
 	 * @todo hover hooks로 만들기
@@ -133,7 +133,7 @@ const SubjectItem: React.FC<ItemProps> = ({ id, workspaceId, children }) => {
 	};
 	const onCreateTestButtonClick = () => {
 		setCreateTestModal(false);
-		testStore.createTest(createTestInput);
+		testPaperStore.createTestPaper(createTestInput);
 		setCreateTestInput('');
 	};
 
