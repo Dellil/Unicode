@@ -34,6 +34,9 @@ export default class SubjectStore {
 		return this.testTable[this.selectedSubjectId];
 	}
 
+	/**
+	 * @todo 책임 분리 필요(subject store로)
+	 */
 	private selectedSubjectId = 'SELECTED';
 
 	setSelectedSubjectIdForFindingTests(subjectId: string) {
