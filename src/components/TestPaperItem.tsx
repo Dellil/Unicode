@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, Item, Separator, useContextMenu } from 'react-contexify';
 import Modal from 'react-modal';
 
 import { useStores } from '@/stores';
 import Icon from '@/lib/icon';
 
-const MENU_ID = 'SUBJECTS';
+const MENU_ID = 'TEST_PAPER_ITEM';
 interface Props {
 	testPaper: { id: string; title: string };
 }
@@ -61,7 +62,21 @@ const TestPaperItem: React.FC<Props> = ({ testPaper }) => {
 				<div className="w-full h-48 bg-transparent flex flex-row justify-center items-center border-b-2 px-6">
 					<div className="truncate">{`${testPaper.title}`}</div>
 				</div>
-				<div className="h-12 bg-transparent flex flex-row flex-row-reverse items-center">
+				<div className="h-12 bg-transparent flex flex-row justify-between items-center">
+					<div className="ml-3 space-x-2 text-xs">
+						<Link
+							to={`/${testPaper.id}/test`}
+							className="bg-transparent p-1 border-2 rounded border-blue-300 text-blue-300 hover:bg-blue-300 hover:text-white transition-colors"
+						>
+							TEST
+						</Link>
+						<Link
+							to={`/${testPaper.id}/edit`}
+							className="bg-transparent p-1 border-2 rounded border-green-300 text-green-300 hover:bg-green-300 hover:text-white transition-colors"
+						>
+							EDIT
+						</Link>
+					</div>
 					<div onClick={handleContextMenu}>
 						<Icon name="dotsMore" className="mr-3 text-gray-700" />
 					</div>
