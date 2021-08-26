@@ -34,6 +34,12 @@ export default class TestPaperStore {
 		return this.testPaperTable[this.selectedSubjectId];
 	}
 
+	getTestPaper(testPaperId: string) {
+		return this.testPaperTable[this.selectedSubjectId].find(
+			testPaper => testPaper.id === testPaperId,
+		);
+	}
+
 	/**
 	 * @todo 책임 분리 필요(subject store로)
 	 */

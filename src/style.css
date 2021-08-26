@@ -18,3 +18,7 @@ body,
 .w-test-papers {
 	width: calc(100% - theme('width.72'));
 }
+
+.w-test-edit-content {
+	width: calc(100% - theme('width.56') - theme('width.80'));
+}
